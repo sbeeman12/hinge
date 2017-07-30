@@ -6,8 +6,16 @@ $(document).ready(function () {
     [0,4,8],
     [2,4,6]
   ]
-  var gameBoard = [0,0,0,0,0,0,0,0,0]
+  var gameBoard = [0,0,0,0,0,0,0,0,0];
   var currentPlayer = 1;
+
+  var resetGame = function() {
+    gameBoard = [0,0,0,0,0,0,0,0,0];
+    currentPlayer = 1;
+    $('.cell').removeClass('playerx');
+    $('.cell').removeClass('playero');
+    $('.cell').text('');
+  }
 
   var checkWin = function() {
     wins.forEach(function (win) {
@@ -17,9 +25,11 @@ $(document).ready(function () {
       })
       if (total == 3) {
         alert('Player 1 wins!');
+        resetGame();
       }
       else if (total == -3) {
         alert('Player 2 wins!');
+        resetGame();
       }
     })
   }
