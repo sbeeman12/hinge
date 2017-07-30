@@ -1,19 +1,48 @@
 $(document).ready(function () {
-  var current_player = 0;
+  var wins = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,4,8],
+    [2,4,6]
+  ]
+  var gameBoard = [0,0,0,0,0,0,0,0,0]
+  var currentPlayer = 1;
+
+  var checkWin = function() {
+    wins.forEach(function (win) {
+      var total = 0;
+      win.forEach(function (i) {
+        total += gameBoard[i];
+      })
+      if (total == 3) {
+        alert('Player 1 wins!');
+      }
+      else if (total == -3) {
+        alert('Player 2 wins!');
+      }
+    })
+  }
 
   $('.cell').bind('click', function() {
     if ($(this).hasClass('playerx') || $(this).hasClass('playero')) {
       return;
     }
-    else if (current_player == 0) {
+    else if (currentPlayer == 1) {
       $(this).addClass('playerx');
       $(this).text('X');
-      current_player = 1;
+      var cellno = parseInt($(this).attr('data-cellno'));
+      gameBoard[cellno] = 1;
+      checkWin();
+      currentPlayer = -1;
     }
     else {
       $(this).addClass('playero');
       $(this).text('O')
-      current_player = 0;
+      var cellno = parseInt($(this).attr('data-cellno'));
+      gameBoard[cellno] = -1;
+      checkWin();
+      currentPlayer = 1;
     }
   })
 });
