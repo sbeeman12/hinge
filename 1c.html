@@ -1,0 +1,57 @@
+<!--
+  The problem here is that the event handler was not being called when objects
+  were being returned to the DOM. I added the event handler in the correct
+  position and now it should work.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>js dom screener</title>
+    <style type="text/css">
+        p {
+            background: yellow;
+            margin: 1em 0;
+            width: 300px;
+            border-radius: 3px;
+            padding: 1em;
+            border: 1px #000 solid;
+        }
+        p.off {
+            background: black;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<button>Cut/Insert paragraphs</button>
+
+<div id="paragraphWrapper">
+    <p>G'day mate</p>
+    <p>What's occurin'?</p>
+</div>
+
+<script type="application/javascript">
+    $( 'p' ).click(function() {
+        console.log(this);
+        $( this ).toggleClass( "off" );
+    });
+    var p;
+    $( "button" ).click(function() {
+        if ( p ) {
+            p.appendTo( "#paragraphWrapper" );
+            $( 'p' ).click(function() {
+                console.log(this);
+                $( this ).toggleClass( "off" );
+            });
+            p = null;
+        } else {
+            p = $( "p" ).remove();
+        }
+    });
+</script>
+
+</body>
+</html>

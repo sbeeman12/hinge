@@ -1,0 +1,37 @@
+<!--
+The original version of this document bound an event handler to every link on
+the page each time it iterated through....every link on the page. The result
+was that every link ended up with the last link's event handler. I've replaced
+this with a handler that can figure out the right message to alert from it's
+own context.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>js knowledge screener</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="2.js"></script>
+    <link rel="stylesheet" href="2.css"/>
+</head>
+<body>
+  <table class="game">
+    <tr class="row">
+      <td class="cell" data-cellno="1"></td>
+      <td class="cell" data-cellno="2"></td>
+      <td class="cell" data-cellno="3"></td>
+    </tr>
+    <tr class="row">
+      <td class="cell" data-cellno="4"></td>
+      <td class="cell" data-cellno="5"></td>
+      <td class="cell" data-cellno="6"></td>
+    </tr>
+    <tr class="row">
+      <td class="cell" data-cellno="7"></td>
+      <td class="cell" data-cellno="8"></td>
+      <td class="cell" data-cellno="9"></td>
+    </tr>
+  </table>
+</body>
+</html>
